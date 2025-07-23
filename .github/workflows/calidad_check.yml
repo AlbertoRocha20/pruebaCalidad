@@ -29,4 +29,4 @@ jobs:
         html-validator --file=./index.html --verbose
     - name: Validar CSS
       run: |
-        css-validator ./styles.css
+        css-validator ./estilos.css
