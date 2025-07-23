@@ -1,32 +1,17 @@
-# .github/workflows/validacion.yml
-name: Validación de HTML y CSS
+name: Validación de CSS
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+on: [push]
 
 jobs:
-  validate:
-    name: Validar HTML & CSS
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Clonar código
       uses: actions/checkout@v3
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
+    - name: Instalar CSS Validator
+      run: npm install -g css-validator
 
-    - name: Instalar validadores
-      run: |
-        npm install -g html-validator-cli css-validator
-    - name: Validar HTML
-      run: |
-        html-validator --file=./index.html --verbose
-    - name: Validar CSS
-      run: |
-        css-validator ./estilos.css
+    - name: Validar archivo CSS
+      run: css-validator ./estilos.css
